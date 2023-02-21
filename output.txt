@@ -1,0 +1,53 @@
+Graph children=[] [] [] [] neighbors=[] [] [] [] parent=0 0 0 0 level=0 0 0 0
+Graph children=[1, 2, 3] [] [] [] neighbors=[1, 2, 3] [0] [0, 3] [0, 2] parent=-1 0 0 0 level=0 1 1 1
+Iteration 0 gbest val 0.0
+Iteration 1 gbest val 0.0
+Iteration 2 gbest val 0.0
+Iteration 3 gbest val 0.0
+Iteration 4 gbest val 0.0
+Iteration 5 gbest val 0.0
+Iteration 6 gbest val 0.0
+Iteration 7 gbest val 0.0
+Iteration 8 gbest val 0.0
+agent 2 pos = 0.0
+agent 3 pos = 0.0
+agent 0 pos = -7.416271675599875
+agent 1 pos = 0.0
+Iteration 9 gbest val 0.0
+Iteration 10 gbest val 0.0
+Iteration 11 gbest val 0.0
+Iteration 12 gbest val 0.0
+Iteration 13 gbest val 0.0
+Iteration 14 gbest val 0.0
+Iteration 15 gbest val 0.0
+Iteration 16 gbest val 0.0
+Iteration 17 gbest val 0.0
+Iteration 18 gbest val 0.0
+Iteration 19 gbest val 0.0
+Graph children=[] [] [] [] neighbors=[] [] [] [] parent=0 0 0 0 level=0 0 0 0
+Graph children=[1, 2, 3] [] [] [] neighbors=[1, 2, 3] [0] [0, 3] [0, 2] parent=-1 0 0 0 level=0 1 1 1
+Iteration 0 gbest val 0.0
+Iteration 1 gbest val 0.0
+Iteration 2 gbest val 0.0
+Iteration 3 gbest val 0.0
+Iteration 4 gbest val 0.0
+Iteration 5 gbest val 0.0
+Iteration 6 gbest val 0.0
+Iteration 7 gbest val 0.0
+Iteration 8 gbest val 0.0
+agent 2 pos = 0.0
+agent 3 pos = 0.0
+agent 0 pos = -4.477500894867477
+agent 1 pos = 0.0
+Iteration 9 gbest val 0.0
+Iteration 10 gbest val 0.0
+Iteration 11 gbest val 0.0
+Iteration 12 gbest val 0.0
+Iteration 13 gbest val 0.0
+Iteration 14 gbest val 0.0
+Iteration 15 gbest val 0.0
+Iteration 16 gbest val 0.0
+Iteration 17 gbest val 0.0
+Iteration 18 gbest val 0.0
+Iteration 19 gbest val 0.0
+DONEEEEE
