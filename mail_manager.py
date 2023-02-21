@@ -103,7 +103,7 @@ class MailManager(Thread):
             # System.out.println("Waiting on rcvmsg");
             self.lock.wait()
         # System.out.println("getmsg " + messages.toString());
-        message = Message(self.messages[0])
+        message = self.messages[0]
         # extracts the message from the queue
         # self.messages.remove(message)
         del self.messages[0]
@@ -132,7 +132,7 @@ class MailManager(Thread):
             # System.out.println("Waiting on cost rcvmsg");
             self.lock.wait()
         # System.out.println("get costmsg " + costMessages.toString());
-        costmessage = Message(self.costMessages[0])
+        costmessage = self.costMessages[0]
         # extracts the message from the queue
         # self.costMessages.remove(costmessage)
         del self.costMessages[0]
@@ -158,7 +158,7 @@ class MailManager(Thread):
         self.lock.acquire()
         while len(self.bestMessages) == 0:
             self.lock.wait()
-        bestmessage = Message(self.bestMessages[0])
+        bestmessage = self.bestMessages[0]
         # extracts the message from the queue
         del self.bestMessages[0]
         # self.bestMessages.remove(bestmessage)

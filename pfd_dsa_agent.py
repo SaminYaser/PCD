@@ -70,8 +70,8 @@ class PFDDSA_Agent(Agent):
 
             for neigh in self.neighbors:
                 cons = self.constraints[self.edgelist[self.indexToEdge[self.agentNo][neigh]]]
-                A += cons.getA()
-                B += cons.getB() * self.inbox[neigh][i]
+                A += cons.a
+                B += cons.b * self.inbox[neigh][i]
             if A != 0:
                 mid = -B/(2*A)
             else:
@@ -85,17 +85,17 @@ class PFDDSA_Agent(Agent):
                 temp_cost = float('inf')
             for neigh in self.neighbors:
                 cons = self.constraints[self.edgelist[self.indexToEdge[self.agentNo][neigh]]]
-                cons_calc_lb += cons.getA() * pow(self.domain_lb, 2) + cons.getB() * self.domain_lb * \
+                cons_calc_lb += cons.a * pow(self.domain_lb, 2) + cons.b * self.domain_lb * \
                     self.inbox[neigh][i] + \
-                    cons.getC() * pow(self.inbox[neigh][i], 2)
-                cons_calc_ub += cons.getA() * pow(self.domain_ub, 2) + cons.getB() * self.domain_ub * \
+                    cons.c * pow(self.inbox[neigh][i], 2)
+                cons_calc_ub += cons.a * pow(self.domain_ub, 2) + cons.b * self.domain_ub * \
                     self.inbox[neigh][i] + \
-                    cons.getC() * pow(self.inbox[neigh][i], 2)
+                    cons.c * pow(self.inbox[neigh][i], 2)
 
                 if mid >= self.domain_lb and mid <= self.domain_ub:
-                    cons_calc_mid += cons.getA() * pow(mid, 2) + cons.getB() * mid * \
+                    cons_calc_mid += cons.a * pow(mid, 2) + cons.b * mid * \
                         self.inbox[neigh][i] + \
-                        cons.getC() * pow(self.inbox[neigh][i], 2)
+                        cons.c * pow(self.inbox[neigh][i], 2)
 
                 else:
                     if self.isMax:

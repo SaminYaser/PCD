@@ -65,8 +65,6 @@ class Agent:
         self.pbest_position = [0.0] * (self.population)
         self.cons_cost = [0.0] * (self.population)
         self.pbestParticleNo = [-1] * (self.population + 1)
-        # Arrays.fill(self.pbestParticleNo, -1)
-        # self.pbestParticleNo = [-1 for x in range(len(self.pbestParticleNo))]
 
         self.gbestParticleNo = -1
         self.neighbors = neighbors
@@ -81,13 +79,9 @@ class Agent:
         self._rng = np.random.default_rng()
         if (ismax):
             self.pbest_val = [4.9E-324] * (self.population)
-            # Arrays.fill(self.pbest_val, 4.9E-324)
-            # self.pbest_val = [4.9E-324 for x in range(len(self.pbest_val))]
             self.gbest_val = 4.9E-324
         else:
             self.pbest_val = [1.7976931348623157E308] * (self.population)
-            # Arrays.fill(self.pbest_val, 1.7976931348623157E308)
-            # self.pbest_val = [1.7976931348623157E308 for x in range(len(self.pbest_val))]
             self.gbest_val = 1.7976931348623157E308
         self.w = w
         self.c1 = c1
@@ -101,7 +95,7 @@ class Agent:
         self.suc_cnt = 0
         self.fail_cnt = 0
         self.row = 1
-
+        self.dsa_prob = 0.7
 
     def cal_row(self):
         if (self.fail_cnt > self.fc):
@@ -113,9 +107,8 @@ class Agent:
     def initValues(self):
         i = 0
         while (i < self.population):
-            # Random r = new Random();
-            randomValue = (
-                (self._rng.random() * (self.domain_ub - self.domain_lb)) + self.domain_lb)
+            randomValue = ((self._rng.random() * (self.domain_ub - self.domain_lb)) + self.domain_lb)
+            # randomValue = ((0.5 * (self.domain_ub - self.domain_lb)) + self.domain_lb)
             assert (randomValue <= self.domain_ub and randomValue >= self.domain_lb)
             # double randomValue = this.domain_lb + (this.domain_ub - this.domain_lb) *
             # r.nextDouble();
@@ -147,6 +140,8 @@ class Agent:
         lb = 0.0
         r1 = (self._rng.random() * (ub - lb)) + lb
         r2 = (self._rng.random() * (ub - lb)) + lb
+        # r1 = (0.6 * (ub - lb)) + lb
+        # r2 = (0.7 * (ub - lb)) + lb
         i = 0
         while (i < self.population):
             if (i == self.gbestParticleNo):
@@ -222,11 +217,6 @@ class Agent:
             consCostList = [0.0] * (self.population)
             for neigh in self.neighbors:
                 cons = self.constraints[self.edgelist[self.indexToEdge[self.agentNo][neigh]]]
-                # i = 0
-                # while (i < self.population):
-                #     cons_calc = cons.a * math.pow(self.position[i], 2) + cons.b * self.position[i] * self.inbox[neigh][i] + cons.c * math.pow(self.inbox[neigh][i], 2)
-                #     consCostList[i] += cons_calc
-                #     i += 1
                 for i, pos in enumerate(self.position):
                     if neigh in self.inbox:
                         cons_calc = cons.a * math.pow(pos, 2) + cons.b * pos * self.inbox[neigh][i] + cons.c * math.pow(self.inbox[neigh][i], 2)
@@ -269,18 +259,9 @@ class Agent:
         try:
             sumChildCost = [0.0] * (self.population)
             for baccha in self.child:
-                # i = 0
-                # while (i < self.population):
-                #     sumChildCost[i] += self.cons_inbox[baccha][i]
-                #     i += 1
                 if baccha in self.cons_inbox.keys():
                     for i, cons in enumerate(self.cons_inbox[baccha]):
                         sumChildCost[i] += cons
-            # i = 0
-            # while (i < self.population):
-            #     self.globalRootCost[i] = sumChildCost[i] + self.cons_cost[i]
-            #     self.globalRootCost[i] /= 2
-            #     i += 1
             for i, cost in enumerate(self.cons_cost):
                 self.globalRootCost[i] = sumChildCost[i] + cost
                 self.globalRootCost[i] /= 2
@@ -332,12 +313,6 @@ class Agent:
         try:
             rcvdBestMsg = self.mailManager[self.agentNo].getBestMessage()
             self.pbestParticleNo = rcvdBestMsg.msgContent
-            # i = 0
-            # while (i < self.population):
-            #     if (self.pbestParticleNo[i] != -1):
-            #         self.pbest_position[i] = self.position[int(
-            #             (self.pbestParticleNo[i]))]
-            #     i += 1
             for i, pbest_pos in enumerate(self.pbest_position):
                 if (pbest_pos == -1):
                     self.pbest_position[i] = self.position[int(self.pbestParticleNo[i])]

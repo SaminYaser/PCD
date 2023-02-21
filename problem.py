@@ -56,9 +56,7 @@ class Problem:
             adj[u].append(v)
 
         graph = Graph(adj, self.MAX_NODE)
-        print(graph)
         graph.bfs()
-        print(graph)
 
         mailManager = [None] * self.MAX_NODE
 
@@ -71,7 +69,7 @@ class Problem:
         for i in range(self.MAX_NODE):
             R[i] = RunnableDemo(
                 self,
-                "PFD",
+                "SocialOnly",
                 mailManager,
                 i,
                 "Agent-" + str(i),

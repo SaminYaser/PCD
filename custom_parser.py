@@ -9,7 +9,6 @@ class CustomParser:
     def main(args):
         parser = CustomParser()
         output = parser.getGraph()
-        # print(output)
 
     def getGraph_sensor(self):
         MAX_NODE = 64

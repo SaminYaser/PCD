@@ -2,8 +2,6 @@ import math
 import random
 from typing import List
 from agent import Agent
-from constraint import Constraint
-from edge import Edge
 from mail_manager import MailManager
 
 class CrossOverAgent(Agent):
@@ -35,6 +33,7 @@ class CrossOverAgent(Agent):
         # Now choose a random item
         randomIndex = 0
         rand = random.random() * totalWeight
+        # rand = 0.5 * totalWeight
         i = 0
         while (i < len(self.bp)):
             rand -= self.bp[i]
